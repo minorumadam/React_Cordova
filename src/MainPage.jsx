@@ -33,10 +33,10 @@ const MyOwnInput = React.createClass({
       const errorMessage = this.getErrorMessage();
 
       return (
-        <div className={className}>
-          <input type="text" onChange={this.changeValue} value={this.getValue()}/>
+        <span className={className}>
+          <input type="text" onChange={this.changeValue} value={this.getValue()} placeholder="Email Address*"/>
           <span>{errorMessage}</span>
-        </div>
+        </span>
       );
     }
   });
@@ -79,7 +79,7 @@ export default class extends React.Component {
     return (
       <Page>
       <Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-        <div class="mainFrame">
+        
         <h3>
         Join the Action Sports Network
         </h3>
@@ -95,24 +95,26 @@ export default class extends React.Component {
         <h3>
         Fill Out The Form Below
         </h3>
-            
-        <input disabled={false} value={this.state.firstname}  onChange={(event) => {
+        <div class="row">
+        <input type="text" disabled={false} value={this.state.firstname}  onChange={(event) => {
         this.setState({firstname: event.target.value})} }  placeholder='First Name*' />
 
-        <input disabled={false} value={this.state.lastname}  onChange={(event) => {
+        <input type="text" disabled={false} value={this.state.lastname}  onChange={(event) => {
         this.setState({lastname: event.target.value})} }  placeholder='Last Name*'/>
-
-        <input disabled={false} value={this.state.username}  onChange={(event) => {
+        </div>
+        <input type="text" disabled={false} value={this.state.username}  onChange={(event) => {
         this.setState({username: event.target.value})} }  placeholder='Username*'/>
 
-        <MyOwnInput name="email" validations="isEmail" validationError="This is not a valid email" required placeholder='Email Address*'/>
-
+        <MyOwnInput name="email" validations="isEmail" validationError="This is not a valid email" required/>
+        <div class="row">
         <input type="password" disabled={false} value={this.state.password}  onChange={(event) => {
         this.setState({password: event.target.value})} }  placeholder='Password*'/>
 
         <input type="password" disabled={false} value={this.state.confirm}  onChange={(event) => {
         this.setState({confirm: event.target.value})} }  placeholder='Confirm Password*'/>
+
         <button type="submit">SUBMIT</button>
+        </div>
         {
           [0].map((idx) => (
             <div>
@@ -121,12 +123,10 @@ export default class extends React.Component {
                 onChange={this.handleCheckbox.bind(this, idx)}
                 checked={this.state.selected.indexOf(idx) >= 0}
               />
-
-              I have read and agree to the <u>terms of service</u>.<sup>*</sup>
+              <span>I have read and agree to the <u>terms of service</u>.<sup>*</sup></span>
             </div>
           ))
         }
-        </div>
          </Formsy.Form>
       </Page>
     );
