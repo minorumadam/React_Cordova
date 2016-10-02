@@ -125,7 +125,7 @@ export default class extends React.Component {
             this.setState({password: event.target.value})} }  placeholder='Password*'></input>
 
             <input type="password" disabled={false} value={this.state.confirm} float onChange={(event) => {
-            this.setState({confirm: event.target.value})} }  placeholder='Confirm Password*'></input>
+            this.setState({confirm: event.target.value})} }  placeholder='Confirm Password*'/>
             <Validation.components.Button >SUBMIT</Validation.components.Button>
         {
           [0].map((idx) => (
